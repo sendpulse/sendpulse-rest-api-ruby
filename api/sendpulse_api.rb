@@ -52,7 +52,7 @@ class SendpulseApi
         client_secret: @secret
     }
 
-    request_data = send_request('/oauth/access_token', 'POST', data, false)
+    request_data = send_request('oauth/access_token', 'POST', data, false)
 
     if !request_data.nil? && request_data[:data]['access_token']
       @token = request_data[:data]['access_token']
@@ -113,7 +113,7 @@ class SendpulseApi
     data.each do |key, value|
       url_param += (url_param.empty?) ? '?' : '&'
       url_param += "#{key}=#{value}"
-    end unless method == 'POST'
+    end unless method == 'POST' || method == 'PUT'
 
     uri = URI.parse("#{@url}/#{path}#{url_param}")
 
@@ -126,9 +126,10 @@ class SendpulseApi
     case method
       when 'POST'
         request = Net::HTTP::Post.new(uri.request_uri, token)
-        request.set_form_data(data)# unless use_token
+        request.set_form_data(data)
       when 'PUT'
         request = Net::HTTP::Put.new(uri.request_uri, token)
+        request.set_form_data(data)
       when 'DELETE'
         request = Net::HTTP::Delete.new(uri.request_uri, token)
       else
