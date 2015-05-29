@@ -4,8 +4,12 @@ require 'yaml'
 API_CLIENT_ID = ''
 API_CLIENT_SECRET = ''
 API_PROTOCOL = 'https'
+API_TOKEN = ''
 
-sendpulse_api = SendpulseApi.new(API_CLIENT_ID, API_CLIENT_SECRET, API_PROTOCOL, '')
+sendpulse_api = SendpulseApi.new(API_CLIENT_ID, API_CLIENT_SECRET, API_PROTOCOL, API_TOKEN)
+
+result = sendpulse_api.get_token
+YAML::dump(result)
 
 result = sendpulse_api.create_campaign('Name', 'example@gmail.com', 'Example subject', '<html><b>Example</b></html>', 'book_id') #+
 YAML::dump(result)
