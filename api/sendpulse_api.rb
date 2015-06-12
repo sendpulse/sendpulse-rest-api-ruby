@@ -140,7 +140,7 @@ class SendpulseApi
       response = http.request(request)
       if response.code.to_i == 401 && @refresh_token == 0
         refresh_token
-        send_request(path, method, data, use_token)
+        return send_request(path, method, data, use_token)
       else
         request_data[:data] = JSON.parse(response.body)
         request_data[:http_code] = response.code
