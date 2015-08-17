@@ -23,7 +23,7 @@ class SendpulseApi
   # @raise [Exception]
   #
   def initialize(user_id, secret, protocol = 'https', token = '')
-    handle_error('Empty new name or book id') if user_id.to_s.empty? || secret.to_s.empty?
+    raise 'Empty ID or SECRET' if user_id.to_s.empty? || secret.to_s.empty?
 
     @url = "#{protocol}://api.sendpulse.com"
     @user_id = user_id
@@ -256,7 +256,7 @@ class SendpulseApi
   # Add new emails to address book
   #
   # @param [Fixnum] book_id
-  # @param emails
+  # @param [Hash] emails
   # @return [Hash]
   #
   def add_emails(book_id, emails)
