@@ -1,7 +1,7 @@
 require 'net/http'
 require 'json'
 require 'base64'
-require './api/lib/php_serialization'
+#require './api/lib/php_serialization'
 
 
 #
@@ -81,7 +81,7 @@ class SendpulseApi
   # @return [String]
   #
   def serialize(data)
-    PhpSerialization.serialize(data)
+    JSON.generate(data)
   end
   private :serialize
 
@@ -92,7 +92,7 @@ class SendpulseApi
   # @return [Mixed]
   #
   def unserialize(data)
-    PhpSerialization.unserialize(data)
+    JSON.parse(data)
   end
   private :unserialize
 
