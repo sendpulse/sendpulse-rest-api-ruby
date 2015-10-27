@@ -108,13 +108,7 @@ class SendpulseApi
 
     request_data = {}
 
-    url_param = ''
-    data.each do |key, value|
-      url_param += (url_param.empty?) ? '?' : '&'
-      url_param += "#{key}=#{value}"
-    end unless method == 'POST' || method == 'PUT'
-
-    uri = URI.parse("#{@url}/#{path}#{url_param}")
+    uri = URI.parse("#{@url}/#{path}")
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true if @protocol == 'https'
