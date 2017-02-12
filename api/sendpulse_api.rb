@@ -125,6 +125,7 @@ class SendpulseApi
         request.set_form_data(data)
       when 'DELETE'
         request = Net::HTTP::Delete.new(uri.request_uri, token)
+        request.set_form_data(data)
       else
         request = Net::HTTP::Get.new(uri.request_uri, token)
     end
