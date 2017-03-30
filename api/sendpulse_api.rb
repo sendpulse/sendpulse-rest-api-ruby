@@ -114,7 +114,7 @@ class SendpulseApi
     http.use_ssl = true if @protocol == 'https'
 
     token = {}
-    token.merge!( 'authorization' => @token ) if use_token
+    token.merge!( 'Authorization' => "Bearer #{@token}" ) if use_token
 
     case method
       when 'POST'
