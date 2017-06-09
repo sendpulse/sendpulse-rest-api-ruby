@@ -1,4 +1,4 @@
-require './api/sendpulse_api'
+require_relative 'lib/sendpulse-rest-api-ruby'
 require 'yaml'
 
 API_CLIENT_ID = ''
